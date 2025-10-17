@@ -2,7 +2,7 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 
-from .database.dbFactory import create_db
+from .database.dbFactory import create_db, seed_database
 
 db = SQLAlchemy()
 
@@ -22,6 +22,7 @@ def create_app():
     
     with app.app_context():
         db.create_all()
+        seed_database(db)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
