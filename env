@@ -1,0 +1,9 @@
+ENVIRONMENT=local
+APP_SECRET_KEY=f42ef55f3cbbf053720424d1641247fd6a61b7aa99d3fccdb52a0b169d7eb17051487167355267c51ff0a550315b8aa81fd41e0173a7715f00281e1145312317
+# do testowania można podmienić ADMIN_EMAIL na usera który jest w lokalnej bazie
+ADMIN_EMAIL=fijola9907@gavrom.com #282163@student.pwr.edu.pl
+MAIL_ACCOUNT=paczkopinie@gmail.com
+MAIL_PASSWORD=kvlg epui kqoi bssz
+MAIL_SERVER=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USE_TLS=True

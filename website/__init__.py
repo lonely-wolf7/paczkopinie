@@ -16,7 +16,7 @@ def create_app():
     # tymczasowy SECRET_KEY do testów — nie commitować w produkcji
     app.config['SECRET_KEY'] = 'C5hdRK11A1euASHPabKixDI47UARO2ZKgiIQ9vw'
     
-    # Make admin check and config available in templates
+    # sprawdzanie admina i config w templates
     from . import config
     app.jinja_env.globals.update(config=config)
     create_db(db, app)

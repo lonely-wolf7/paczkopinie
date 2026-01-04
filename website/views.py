@@ -10,7 +10,7 @@ from urllib.parse import quote_plus, unquote_plus
 
 
 def admin_required(f):
-    """Decorator to check if current user is an admin."""
+    # Sprawdzanie czy użytkownik jest administratorem
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not is_admin(current_user):
@@ -25,7 +25,7 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET'])
 @login_required
 def home():
-    """Show cities as the main page."""
+    # Pokaż miasta jako strona główna.
     repository = Repository(current_user, db)
     cities = repository.get_all_cities_with_counts()
     return render_template("home.html", cities=cities, current_user=current_user)
@@ -49,7 +49,8 @@ def paczkomat(paczkomat_id):
         rating = request.form.get('rating')
         review = request.form.get('review')
 
-        if not rating or int(rating) == 0:  # jeśli użytkownik nie zaznaczył oceny
+        if not rating or int(rating) == 0:  
+            # jeśli użytkownik nie zaznaczył oceny
             flash('Ocena jest wymagana!', category='error')
         else:
             try:
@@ -78,7 +79,7 @@ def paczkomat(paczkomat_id):
 @views.route('/miasto/<city_slug>', methods=['GET'])
 @login_required
 def miasto(city_slug):
-    """Show paczkomats for a selected city."""
+    # Pokaż paczkomaty dla wybranego miasta.
     repository = Repository(current_user, db)
     city = repository.get_city_by_slug(city_slug)
     if not city:
@@ -93,7 +94,7 @@ def miasto(city_slug):
 @login_required
 @admin_required
 def dodaj_miasto():
-    """Add a new city. Admin only."""
+    # Dodaj nowe miasto. Tylko dla administratora.
     name = request.form.get('name')
     if not name:
         flash('Nazwa miasta jest wymagana!', category='error')
@@ -113,7 +114,7 @@ def dodaj_miasto():
 @login_required
 @admin_required
 def dodaj_paczkomat():
-    """Add a new paczkomat. Admin only."""
+    # Dodaj nowy paczkomat. Tylko dla administratora.
     code_id = request.form.get('code_id')
     city_id = request.form.get('city_id')
     address = request.form.get('address')

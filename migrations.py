@@ -6,8 +6,8 @@ migrate = Migrate(app, db)
 
 if __name__ == '__main__':
     with app.app_context():
-        # Import models so they are known to Flask-Migrate
+        # Importowanie modeli, aby migracje mogły je wykryć
         from website.models import User, Reviews, Paczkomats, City
         
-        # Create tables for models (only if they don't exist)
+        # Tworzenie wszystkich tabel w bazie danych
         db.create_all()
